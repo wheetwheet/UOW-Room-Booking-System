@@ -1,0 +1,31 @@
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+UOW Booking System Relational Schema
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+user(username, password, first_name, last_name, dob, email, role_id, login_datetime, logout_datetime, status)
+PRIMARY KEY = (username)
+FOREIGN KEY = (role_id) REFERENCES role(role_id)
+
+
+role(role_id, description)
+PRIMARY KEY = (role_id)
+
+
+building(blk, name)
+PRIMARY KEY = (blk)
+
+
+floor(blk, floor_num)
+PRIMARY KEY = (blk, floor_num)
+FOREIGN KEY = (blk) REFERENCES blk(blk)
+
+
+room(blk, room_num, floor_num, start_date, end_date, start_time, end_time, promo_code, capacity, price, creation_status, launch_status, availability)
+PRIMARY KEY = (blk, floor_num, room_num)
+FOREIGN KEY = (floor_num, blk) REFERENCES floor(floor_num, blk)
+
+
+booking(booking_id, username, blk, floor_num, room_num, book_start_date, book_end_date, book_start_date, book_end_time)
+PRIMARY KEY = (blk, floor_num, room_num)
+FOREIGN KEY1 = (username) REFERENCES user(username)
+FOREIGN KEY2 = (blk, floor_num, room_num) REFERENCES room(blk, floor_num, room_num)

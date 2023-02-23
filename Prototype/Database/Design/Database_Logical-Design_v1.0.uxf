@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.3.0">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>550</x>
+      <y>20</y>
+      <w>520</w>
+      <h>180</h>
+    </coordinates>
+    <panel_attributes>booking
+--
+booking_id             PK
+username                     FK1 REFERENCES user (username)
+blk                                 FK2 REFERENCES room (blk, floor, room_num) 
+floor_num                      FK2
+room_num                     FK2
+book_start_date
+book_end_date
+book_start_time
+book_end_time</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>20</x>
+      <y>20</y>
+      <w>410</w>
+      <h>190</h>
+    </coordinates>
+    <panel_attributes>user
+--
+username              PK
+password
+first_name
+last_name
+dob
+email
+role_id                                  FK1 REFERENCES role (role_id)
+login_datetime
+logout_datetime
+status</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>20</x>
+      <y>230</y>
+      <w>210</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>role
+--
+role_id                 PK
+description
+student [0..1]
+admin [0..1]</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>550</x>
+      <y>300</y>
+      <w>440</w>
+      <h>260</h>
+    </coordinates>
+    <panel_attributes>room
+--
+blk                        PK     FK1
+room_num            PK  
+floor_num              PK    FK1 REFERENCES floor (floor_num, blk)
+start_date
+end_date
+start_time
+end_time
+promo_code
+capacity
+price
+creation_status
+launch_status
+availability
+image</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>20</x>
+      <y>370</y>
+      <w>210</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>building
+--
+blk             PK
+name</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>20</x>
+      <y>490</y>
+      <w>350</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>floor
+--
+floor_num      PK
+blk                  PK      FK REFERENCES building (blk)</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>
